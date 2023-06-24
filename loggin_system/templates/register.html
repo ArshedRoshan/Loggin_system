@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<script>
+    function validateForm() {
+        // Get form elements
+        var name = document.getElementById('firstName');
+        var nameError = document.getElementById('firstNameError');
+        var email = document.getElementById('lastName');
+        var emailError = document.getElementById('lastNameError');
+        var country = document.getElementById('country');
+        var countryError = document.getElementById('countryError');
+        var nationality = document.getElementById('nationality');
+        var nationalityError = document.getElementById('nationalityError');
+        var mobile = document.getElementById('mobile');
+        var mobileError = document.getElementById('mobileError');
+        var password = document.getElementById('password');
+        var passwordError = document.getElementById('passwordError');
+        var roles = document.getElementById('roles');
+        var rolesError = document.getElementById('rolesError');
+
+        // Reset error messages
+        nameError.textContent = '';
+        emailError.textContent = '';
+        countryError.textContent = '';
+        nationalityError.textContent = '';
+        mobileError.textContent = '';
+        passwordError.textContent = '';
+        rolesError.textContent = '';
+
+        // Perform validation
+        var isValid = true;
+
+        if (name.value === '') {
+            nameError.textContent = 'Please enter a name.';
+            nameError.style.color = 'red';
+            name.focus();
+            isValid = false;
+        }
+
+        if (email.value === '') {
+            emailError.textContent = 'Please enter an email.';
+            emailError.style.color = 'red';
+            email.focus();
+            isValid = false;
+        }
+
+        if (country.value === '') {
+            countryError.textContent = 'Please enter a country.';
+            countryError.style.color = 'red';
+            country.focus();
+            isValid = false;
+        }
+
+        if (nationality.value === '') {
+            nationalityError.textContent = 'Please enter a nationality.';
+            nationalityError.style.color = 'red';
+            nationality.focus();
+            isValid = false;
+        }
+
+        if (mobile.value === '') {
+            mobileError.textContent = 'Please enter a mobile number.';
+            mobileError.style.color = 'red';
+            mobile.focus();
+            isValid = false;
+        }
+
+        if (password.value === '') {
+            passwordError.textContent = 'Please enter a password.';
+            passwordError.style.color = 'red';
+            password.focus();
+            isValid = false;
+        }
+
+        if (roles.value === '') {
+            rolesError.textContent = 'Please choose a role.';
+            rolesError.style.color = 'red';
+            roles.focus();
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
+
+
+<section class="vh-100 gradient-custom">
+	<div class="container py-5">
+		<div class="row justify-content-center">
+			<div class="col-12 col-lg-9 col-xl-7">
+				<div class="card shadow-2-strong card-registration">
+					<div class="card-body p-4 p-md-5">
+						<h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+						<form action="{% url 'register' %}" method="post"   onsubmit="return validateForm();">
+							{% csrf_token %}
+
+							<div class="row">
+								<div class="col-md-6 mb-4">
+
+									<div class="form-outline">
+										<input type="text" id="firstName" class="form-control form-control-lg" name="Name" />
+										<label class="form-label" for="Name">Name</label>
+										<div id="firstNameError" class="error-text"></div>
+									</div>
+
+								</div>
+								<div class="col-md-6 mb-4">
+
+									<div class="form-outline">
+										<input type="text" id="lastName" class="form-control form-control-lg" name="Email" />
+										<label class="form-label" for="lastName">Email</label>
+										<div id="lastNameError" class="error-text"></div>
+									</div>
+
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 mb-4 d-flex align-items-center">
+
+									<div class="form-outline">
+										<input type="text" id="country" class="form-control form-control-lg" style="width: 194px" name="Country"/>
+										<label class="form-label" for="emailAddress">Country</label>
+										<div id="countryError" class="error-text"></div>
+									</div>
+
+									<div class="form-outline">
+										<input type="text"id="nationality"class="form-control form-control-lg" style="margin-left: 100px;" name="Nationality"/>
+										<label class="form-label" for="emailAddress" style="margin-left: 100px;" >Nationality</label>
+										<div id="nationalityError" class="error-text"></div>
+									</div>
+
+
+								</div>
+								
+
+							<div class="row">
+								<div class="col-md-6 mb-4 pb-2">
+
+									<div class="form-outline">
+										<input type="number" id="mobile" class="form-control form-control-lg" name="Mobile"/>
+										<label class="form-label" for="emailAddress">Phone Number</label>
+										<div id="mobileError" class="error-text"></div>
+									</div>
+
+								</div>
+								<div class="col-md-6 mb-4 pb-2">
+
+									<div class="form-outline">
+										<input type="password" id="password" class="form-control form-control-lg" name="Password" />
+										<label class="form-label" for="phoneNumber">Password</label>
+										<div id="passwordError" class="error-text"></div>
+
+									</div>
+									
+
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-12">
+
+									<select class="select form-control-lg" id="roles" name="Roles">
+										<option value="student">Student</option>
+										<option value="staff">Staff</option>
+										<option value="admin">Admin</option>
+										<option value="editor">Editor</option>
+
+									</select>
+									<label class="form-label select-label">Choose Role</label>
+									<div id="rolesError" class="error-text"></div>
+
+								</div>
+							</div>
+              
+							<div class="mt-4 pt-2">
+								<input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+							</div>
+                            
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

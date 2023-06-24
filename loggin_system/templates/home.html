@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h2>Home</h2>
+
+<h4>Welcome, {{ user.Name}}!</h4>
+<p>Role: {{ user.Roles}}</p>
+
+<form action="{% url 'student_logout' %}" method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Logout">
+  </form>
+{% endblock %}
